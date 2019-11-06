@@ -175,7 +175,7 @@ class Critic(nn.Module):
    <img src="Training.png">
    
    # Future Improvements
-    1) Use the same model for more complex environments
-    2) Force experience reply with higher errors to be picked more often than other experiences for experience reply and see how the agents would react in terms of learning cure
-    3) Put a 3rd Agent to routate learnings and see how this affects the learning curve
-    4 ) Set different hyperparameters and batches to see how much the learning speed can be improved 
+   1) Use the same model for more complex environments
+   2) Force experience reply with higher errors to be picked more often than other experiences for experience reply and see how the agents would react in terms of learning cure
+   3) Put a 3rd Agent to routate learnings and see how this affects the learning curve
+   4) Set different hyperparameters and batches to see how much the learning speed can be improved 
