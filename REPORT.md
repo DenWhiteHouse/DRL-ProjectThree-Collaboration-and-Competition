@@ -72,7 +72,7 @@ EPS_FINAL = 0           # final value for epsilon after decay
 As this last project asks to perform a traning of a multi-agent agent, the training model used (Model.py) is the 
 Multi-Agent Deep Deterministic Policy Gradient (MADDPG) with the following Actor and Critic nets:
 
-#ACTOR
+# ACTOR
 
 class Actor(nn.Module):
 ```python
@@ -107,7 +107,7 @@ class Actor(nn.Module):
         return torch.tanh(self.fc3(x))
 ```
 
-#CRITICS
+# CRITICS
 
 ```python
 class Critic(nn.Module):
@@ -169,7 +169,7 @@ class Critic(nn.Module):
   
    # Final Results
    The Environment gets solved in 1337 episodes!                 
-   with an Average: 0.501 over past 100 episodes
+   with an Average: 0.501 over the last 100 episodes
    <img src="Training.png">
    
    # Future Improvements
