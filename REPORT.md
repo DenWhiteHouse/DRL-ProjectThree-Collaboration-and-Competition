@@ -41,7 +41,7 @@ This yields a single score for each episode.
 The environment is considered solved, when the average (over 100 episodes) of those scores is at least +0.5.
 
 # Multi-Agent Deep Deterministic Policy Gradient (MADDPG)
-
+'''
 BUFFER_SIZE = int(1e6)  # replay buffer size
 BATCH_SIZE = 128        # minibatch size
 LR_ACTOR = 1e-3         # learning rate of the actor
@@ -56,6 +56,7 @@ OU_THETA = 0.15         # Ornstein-Uhlenbeck noise parameter, speed of mean reve
 EPS_START = 5.0         # initial value for epsilon in noise decay process in Agent.act()
 EPS_EP_END = 300        # episode to end the noise decay process
 EPS_FINAL = 0           # final value for epsilon after decay
+```python
 
         # Actor Network (w/ Target Network)
         self.actor_local = Actor(state_size, action_size, random_seed).to(device)
@@ -66,6 +67,7 @@ EPS_FINAL = 0           # final value for epsilon after decay
         self.critic_local = Critic(state_size, action_size, random_seed).to(device)
         self.critic_target = Critic(state_size, action_size, random_seed).to(device)
         self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
+ ```
 
 As this last project asks to perform a traning of a multi-agent agent, the training model used (Model.py) is the 
 Multi-Agent Deep Deterministic Policy Gradient (MADDPG) with the following Actor and Critic nets:
@@ -73,6 +75,7 @@ Multi-Agent Deep Deterministic Policy Gradient (MADDPG) with the following Actor
 #ACTOR
 
 class Actor(nn.Module):
+```python
     """Actor (Policy) Model."""
 
     def __init__(self, state_size, action_size, seed, fc1_units=256, fc2_units=128):
@@ -102,9 +105,11 @@ class Actor(nn.Module):
         x = F.relu(self.fc1(state))
         x = F.relu(self.fc2(x))
         return torch.tanh(self.fc3(x))
+```
 
 #CRITICS
 
+```python
 class Critic(nn.Module):
     """Critic (Value) Model."""
 
@@ -139,14 +144,16 @@ class Critic(nn.Module):
         
     """
     
+```
+    
    
  # ADDITIONAL IMPROVEMENTS
    - Noise ->         self.noise = OUNoise((num_agents, action_size), random_seed)
    - Experience Reply -> self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, random_seed)
    - Gradient Clipping -> torch.nn.utils.clip_grad_norm_(self.critic_local.parameters(), 1)
-
-# SOFT UPDATE
-def soft_update(self, local_model, target_model, tau):
+   - Soft Update
+   ```python
+   def soft_update(self, local_model, target_model, tau):
         """Soft update model parameters.
         θ_target = τ*θ_local + (1 - τ)*θ_target
         Params
@@ -158,6 +165,15 @@ def soft_update(self, local_model, target_model, tau):
         for target_param, local_param in zip(target_model.parameters(), local_model.parameters()):
             target_param.data.copy_(tau*local_param.data + (1.0-tau)*target_param.data)
             
-            
+  ```
+  
    # Final Results
+   The Environment gets solved in 1337 episodes!                 
+   with an Average: 0.501 over past 100 episodes
    <img src="Training.png">
+   
+   # Future Improvements
+    1) Use the same model for more complex environments
+    2) Force experience reply with higher errors to be picked more often than other experiences for experience reply and see how the agents would react in terms of learning cure
+    3) Put a 3rd Agent to routate learnings and see how this affects the learning curve
+    4 ) Set different hyperparameters and batches to see how much the learning speed can be improved 
