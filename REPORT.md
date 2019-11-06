@@ -4,7 +4,7 @@
 The goal of this last project is to train an agent to play against itself in a provided Tennis environment. The rewards are calculated following the rules of tennis, the aim of the Actor-critic is to ensure that the agent is able to win against himself, learning from its past experiences.
 
 # The Environment - Unity Tennis
-
+'''
 Set-up: Two-player game where agents control rackets to bounce ball over a net.
 Goal: The agents must bounce ball between one another while not dropping or sending ball out of bounds.
 Agents: The environment contains two agent with same Behavior Parameters. After training you can check the Use Heuristic checkbox on one of the Agents to play against your trained model.
@@ -29,6 +29,7 @@ Default: 1
 Recommended Minimum: 0.2
 Recommended Maximum: 5
 Benchmark Mean Reward: 2.5
+'''
 
 In this environment, two agents control rackets to bounce a ball over a net. If an agent hits the ball over the net, it receives a reward of +0.1. If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01. Thus, the goal of each agent is to keep the ball in play.
 
