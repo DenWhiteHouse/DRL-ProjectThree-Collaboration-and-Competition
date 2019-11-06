@@ -160,3 +160,4 @@ def soft_update(self, local_model, target_model, tau):
             
             
    # Final Results
+   <img src="Training.png">
